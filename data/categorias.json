@@ -1,0 +1,9 @@
+
+ [
+    { "id": "1", "nombre": "Procesadores", "icono": "cpu-64-bit" },
+    { "id": "2", "nombre": "Memoria", "icono": "memory" },
+    { "id": "3", "nombre": "Discos Duros", "icono": "harddisk" },
+    { "id": "4", "nombre": "Smartphones", "icono": "cellphone" },
+    { "id": "5", "nombre": "Tarjetas Gráficas", "icono": "chip" }
+  ]
+
