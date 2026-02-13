@@ -1,6 +1,7 @@
 import React from 'react'
 import { Stack, useRouter } from 'expo-router'
 import { IconButton, useTheme } from 'react-native-paper'
+import '@/animations/Animations'
 
 export default function _layout() {
   
@@ -42,7 +43,7 @@ export default function _layout() {
       <Stack.Screen
         name='menuLateral'
         options={{
-          animation: "slide_from_left",
+          animation: "none",
           headerShown: false,
           presentation: "modal"
         }}

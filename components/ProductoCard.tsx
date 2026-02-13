@@ -1,8 +1,9 @@
 import { Pressable, View } from 'react-native'
-import React from 'react'
+import React, { useRef } from 'react'
 import { CATEGORIAS, Producto } from '@/model/Types'
 import { Badge, Card, Icon, Text, useTheme } from 'react-native-paper'
 import { Image } from 'expo-image'
+import { AnimatableCard } from '@/animations/Animations'
 
 type ProductoCardProps = {
   producto: Producto,
@@ -12,10 +13,15 @@ type ProductoCardProps = {
 export default function ProductoCard({producto, onPress}: ProductoCardProps) {
   
   const theme = useTheme()
+  const card = useRef<any>(undefined)
   
   return (
     <Pressable onPress={() => onPress(producto)}>
-      <Card style={{ marginHorizontal: 12, marginVertical: 8, borderRadius: 12 }}>
+      <AnimatableCard 
+        ref={card} 
+        style={{ marginHorizontal: 12, marginVertical: 8, borderRadius: 12 }}
+        onPress={() => card.current?.pulse?.(200).then(() => onPress(producto))}
+      >
         <View style={{ height: 180, backgroundColor: '#ffffff',justifyContent: 'center',alignItems: 'center' }}>
           <Image
             source={{ uri: producto.imagen }} 
@@ -45,7 +51,7 @@ export default function ProductoCard({producto, onPress}: ProductoCardProps) {
             <Text>{producto.estrellas.toFixed(1)} ({producto.valoraciones})</Text></View>
           </View>
         </Card.Content>
-      </Card>
+      </AnimatableCard>
     </Pressable>
   )
 }

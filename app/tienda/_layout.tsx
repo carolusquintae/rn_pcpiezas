@@ -3,6 +3,7 @@ import { Tabs } from 'expo-router'
 import { Badge, Icon, useTheme } from 'react-native-paper'
 import { useCarrito } from '@/store/CarritoStore'
 import { View } from 'react-native'
+import ProductosComprados from '@/components/ProductosComprados'
 
 export default function _layout() {
   
@@ -45,22 +46,7 @@ export default function _layout() {
           tabBarIcon: ({color, size}) => (
             <View>
               <Icon source={"cart-outline"} size={size} color={color} />
-              {
-                productos.length > 0 && (
-                  <Badge 
-                    size={16} 
-                    style={{ 
-                      backgroundColor: theme.colors.tertiary, 
-                      color: theme.colors.onPrimary,
-                      position: "absolute", 
-                      top: -4, 
-                      right: -10
-                    }}
-                  >
-                    {productos.length}
-                  </Badge>
-                )
-              }
+              <ProductosComprados cantidad={productos.length} />
             </View>
           )
         }}

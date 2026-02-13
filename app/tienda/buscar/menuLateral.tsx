@@ -1,24 +1,19 @@
 import { Pressable, View, Dimensions, StyleSheet } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import { useTheme, Text, List, Icon, Divider } from 'react-native-paper'
 import { useConsulta } from '@/store/ConsultaStore'
 import { Categoria, CATEGORIAS } from '@/model/Types'
 import { useRouter } from 'expo-router'
+import * as Animatable from 'react-native-animatable'
+import '@/animations/Animations'
 
 export default function menuLateral() {
   
   const { setConsulta } = useConsulta()
+  const [abierto, setAbierto] = useState(true)
   const theme = useTheme()
   const router = useRouter()
   const { width } = Dimensions.get('window')
-  
-  function consultarCategoria(categoria: Categoria) {
-    setConsulta({ 
-      categoriaId: categoria.id 
-    })
-
-    router.replace("/tienda/buscar/consulta")
-  }
 
   const styles = StyleSheet.create({
     contenedor: { 
@@ -40,9 +35,22 @@ export default function menuLateral() {
       marginBottom: 16
     }
   })
+  
+  function consultarCategoria(categoria: Categoria) {
+    setConsulta({ 
+      categoriaId: categoria.id 
+    })
+
+    router.replace("/tienda/buscar/consulta")
+  }
+
+  function cerrarMenu() {
+    setAbierto(false)
+    setTimeout(() => router.back(), 250)
+  }
 
   return (
-    <View className='flex-1 flex-row'>
+    <Animatable.View animation={abierto ? "entradaDrawer" : "salidaDrawer"} duration={250} className='flex-1 flex-row'>
       <View style={styles.contenedor}>
         <Text variant='titleLarge' style={styles.text}>Categorías</Text>
         <Divider style={{ marginBottom: 8 }} />
@@ -68,6 +76,6 @@ export default function menuLateral() {
           backgroundColor: 'rgba(0,0,0,0.3)'
         }}
       />
-    </View>
+    </Animatable.View>
   )
 }
