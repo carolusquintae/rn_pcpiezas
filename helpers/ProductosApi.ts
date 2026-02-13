@@ -2,8 +2,7 @@ import { Platform } from "react-native";
 import request, { gql } from "graphql-request";
 import { Consulta, DetalleProducto, Productos } from "@/model/Types";
 
-// const IP = Platform.OS === "android" ? "10.0.2.2" : "localhost"
-const IP = "192.168.70.65"  // "192.168.1.118"
+const IP = Platform.OS === "android" ? "10.0.2.2" : "localhost"
 const URL = `http://${IP}:3000`
 
 export async function buscarProductos(consulta: Consulta): Promise<Productos> {
