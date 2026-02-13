@@ -1,4 +1,4 @@
-import { MD3DarkTheme } from 'react-native-paper';
+import { MD3DarkTheme } from 'react-native-paper'
 
 export const temaOscuro= {
   ...MD3DarkTheme,
@@ -25,4 +25,4 @@ export const temaOscuro= {
       level5: '#383838',
     }
   }
-};
+}
